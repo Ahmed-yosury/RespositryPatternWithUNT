@@ -29,7 +29,7 @@ namespace RespositryPatternWithUNT.api.Controllers
 
         }
         
-        [HttpGet("GetByIdAsync")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             return Ok(await _unitOfWork.Employees.GetByIdAsync(id));
