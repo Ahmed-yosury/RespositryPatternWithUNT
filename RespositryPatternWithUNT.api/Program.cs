@@ -32,10 +32,19 @@ namespace RespositryPatternWithUNT.api
             //builder.Services.AddTransient(typeof(IBaseRespositry<>), typeof(BaseRespositry<>));
             builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
             builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
-           
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
+                    });
+            });
+
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             // Configure the HTTP request pipeline.
             //  if (app.Environment.IsDevelopment())
             //{
@@ -44,14 +53,11 @@ namespace RespositryPatternWithUNT.api
             //}
 
             
-            app.UseCors();
 
-            
-
+           
             app.UseHttpsRedirection();
-
             app.UseStaticFiles();
-
+            app.UseCors("AllowAll");
             app.UseAuthorization();
 
 
