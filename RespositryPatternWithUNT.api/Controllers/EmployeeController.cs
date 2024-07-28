@@ -120,7 +120,9 @@ namespace RespositryPatternWithUNT.api.Controllers
 
                 
             }
-            return "https://localhost:44323/"+imagepath;
+            string imgeurl = "https://localhost:44323/" + imagepath;
+
+            return imgeurl;
         }
         [NonAction]
         public Employee UpdateEmployee(EmployeeDtos employee, int id)
@@ -149,7 +151,8 @@ namespace RespositryPatternWithUNT.api.Controllers
             {
                 file.CopyToAsync(stream);
             }
-            return "https://localhost:44323/" + imagePath;
+            string imgeurl = "https://localhost:44323/" + imagePath;
+            return  imgeurl;
         }
 
         [NonAction]
